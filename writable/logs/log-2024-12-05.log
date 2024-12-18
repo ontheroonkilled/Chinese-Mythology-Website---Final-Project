@@ -1,0 +1,97 @@
+CRITICAL - 2024-12-05 09:25:23 --> MongoDB\BSON\toPHP() expects parameter 1 to be string, object given
+in APPPATH\Controllers\Home.php on line 22.
+ 1 APPPATH\Controllers\Home.php(22): MongoDB\BSON\toPHP(Object(MongoDB\Model\BSONDocument))
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 09:25:44 --> Class 'MongoDB\BSON\toPHP' not found
+in APPPATH\Controllers\Home.php on line 22.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test()
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 09:37:49 --> Invalid argument supplied for foreach()
+in APPPATH\Controllers\Home.php on line 23.
+ 1 APPPATH\Controllers\Home.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'D:\\xampp2\\htdocs\\code\\app\\Controllers\\Home.php', 23, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:01:35 --> Object of class MongoDB\Model\BSONDocument could not be converted to string
+in APPPATH\Controllers\Home.php on line 27.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test()
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:28:08 --> Call to undefined method MongoDB\Model\BSONDocument::countDocuments()
+in APPPATH\Controllers\Home.php on line 59.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('3')
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:28:28 --> Call to undefined method MongoDB\Driver\Cursor::countDocuments()
+in APPPATH\Controllers\Home.php on line 59.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('3')
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:36:55 --> Invalid argument supplied for foreach()
+in APPPATH\Controllers\Home.php on line 38.
+ 1 APPPATH\Controllers\Home.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'D:\\xampp2\\htdocs\\code\\app\\Controllers\\Home.php', 38, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('1')
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:42:39 --> $documents is not a list (unexpected index: "name")
+in VENDORPATH\mongodb\mongodb\src\Operation\InsertMany.php on line 96.
+ 1 VENDORPATH\mongodb\mongodb\src\Collection.php(908): MongoDB\Operation\InsertMany->__construct('sample_mflix', 'comments', [...], [...])
+ 2 APPPATH\Controllers\Home.php(100): MongoDB\Collection->insertMany([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('6')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:47:32 --> $documents is not a list (unexpected index: "<field name 1>")
+in VENDORPATH\mongodb\mongodb\src\Operation\InsertMany.php on line 96.
+ 1 VENDORPATH\mongodb\mongodb\src\Collection.php(908): MongoDB\Operation\InsertMany->__construct('sample_mflix', 'comments', [...], [...])
+ 2 APPPATH\Controllers\Home.php(103): MongoDB\Collection->insertMany([...], [...], [...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('6')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:47:46 --> $documents is not a list (unexpected index: "name")
+in VENDORPATH\mongodb\mongodb\src\Operation\InsertMany.php on line 96.
+ 1 VENDORPATH\mongodb\mongodb\src\Collection.php(908): MongoDB\Operation\InsertMany->__construct('sample_mflix', 'comments', [...], [...])
+ 2 APPPATH\Controllers\Home.php(101): MongoDB\Collection->insertMany([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('6')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 10:47:59 --> $documents is not a list (unexpected index: "name")
+in VENDORPATH\mongodb\mongodb\src\Operation\InsertMany.php on line 96.
+ 1 VENDORPATH\mongodb\mongodb\src\Collection.php(908): MongoDB\Operation\InsertMany->__construct('sample_mflix', 'comments', [...], [...])
+ 2 APPPATH\Controllers\Home.php(101): MongoDB\Collection->insertMany([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('6')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 12:38:38 --> Failed to look up SRV record "_mongodb._tcp.cluster0.9sywh.mongodb.newt": DNS adý yok.
+
+in VENDORPATH\mongodb\mongodb\src\functions.php on line 487.
+ 1 VENDORPATH\mongodb\mongodb\src\functions.php(487): MongoDB\Driver\Manager->selectServer(Object(MongoDB\Driver\ReadPreference))
+ 2 VENDORPATH\mongodb\mongodb\src\Collection.php(687): MongoDB\select_server(Object(MongoDB\Driver\Manager), [...])
+ 3 APPPATH\Controllers\Home.php(34): MongoDB\Collection->findOne([...])
+ 4 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('1')
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-05 12:39:02 --> bad auth : authentication failed
+in VENDORPATH\mongodb\mongodb\src\Operation\Find.php on line 341.
+ 1 VENDORPATH\mongodb\mongodb\src\Operation\Find.php(341): MongoDB\Driver\Server->executeQuery('sample_mflix.users', Object(MongoDB\Driver\Query), [...])
+ 2 VENDORPATH\mongodb\mongodb\src\Operation\FindOne.php(129): MongoDB\Operation\Find->execute(Object(MongoDB\Driver\Server))
+ 3 VENDORPATH\mongodb\mongodb\src\Collection.php(699): MongoDB\Operation\FindOne->execute(Object(MongoDB\Driver\Server))
+ 4 APPPATH\Controllers\Home.php(34): MongoDB\Collection->findOne([...])
+ 5 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Home->test('1')
+ 6 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
