@@ -31,7 +31,7 @@
         <ul class="links">
             <li <?= ($active_menu ?? '') == 'home' ? 'class="active"' : '' ?>><a href="<?= base_url() ?>">Ana Sayfa</a></li>
             <li <?= ($active_menu ?? '') == 'hakkimizda' ? 'class="active"' : '' ?>><a href="<?= base_url('hakkimizda') ?>">Hakkımızda</a></li>
-            <li><a href="<?= base_url('admin/goruntule') ?>">Admin Giriş</a></li>
+            <li <?= ($active_menu ?? '') == 'login' ? 'class="active"' : '' ?>><a href="<?= base_url('admin/login') ?>">Admin Girişi</a></li>
         </ul>
         <ul class="icons">
             <li><a href="https://steamcommunity.com/profiles/76561198312714440" class="icon brands fa-steam"><span class="label">Steam</span></a></li>
