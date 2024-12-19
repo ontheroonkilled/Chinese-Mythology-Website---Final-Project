@@ -37,4 +37,9 @@ class Pages extends BaseController
     {
         return view('admin/ekle');
     }
+
+    public function duzenle($id = null)
+    {
+        return view('admin/düzenle');
+    }
 }
