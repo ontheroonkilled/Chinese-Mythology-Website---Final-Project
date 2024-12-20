@@ -34,8 +34,8 @@
             <li <?= ($active_menu ?? '') == 'login' ? 'class="active"' : '' ?>><a href="<?= base_url('admin/login') ?>">Admin Girişi</a></li>
         </ul>
         <ul class="icons">
-            <li><a href="https://steamcommunity.com/profiles/76561198312714440" class="icon brands fa-steam"><span class="label">Steam</span></a></li>
-            <li><a href="https://www.odyofilizm.com" class="icon brands fa-wordpress"><span class="label">WordPress</span></a></li>
-            <li><a href="https://www.instagram.com/shuichi_tatsuo/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="https://github.com/ontheroonkilled" class="icon brands fa-github"><span class="label">Berat Beşgül</span></a></li>
+            <li><a href="https://github.com/shest00" class="icon brands fa-github"><span class="label">Emircan Doğanay</span></a></li>
+            <li><a href="https://github.com/emircopur" class="icon brands fa-github"><span class="label">Emir Çöpür</span></a></li>
         </ul>
     </nav>
