@@ -19,7 +19,10 @@ $routes->get('mongo/(:num)', 'Home::test/$1');
 $routes->group('admin', ['namespace' => 'App\Controllers'], function($routes) {
     $routes->get('login', 'Pages::login');
     $routes->post('login', 'Pages::login');  
-    $routes->get('panel', 'Pages::panel');
-    $routes->get('ekle', 'Pages::ekle');
-    $routes->get('duzenle/(:segment)', 'Pages::duzenle/$1');
+    $routes->get('panel', 'Admin::panel');
+    $routes->get('ekle', 'Admin::ekle');
+    $routes->post('ekle', 'Admin::ekle');
+    $routes->get('duzenle/(:segment)', 'Admin::duzenle/$1');
+    $routes->post('duzenle/(:segment)', 'Admin::duzenle/$1');
+    $routes->get('sil/(:segment)', 'Admin::sil/$1');
 });

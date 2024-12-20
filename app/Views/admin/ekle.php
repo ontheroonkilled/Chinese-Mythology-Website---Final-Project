@@ -1,3 +1,44 @@
+<?php
+require_once __DIR__ . '/../../config/mongodb.php';
+
+$mongodb = MongoDB_Connection::getInstance();
+
+if(isset($_POST['ekle'])) {
+    $baslik = $_POST['baslik'];
+    $icerik = $_POST['icerik'];
+    
+    // Resim yükleme işlemi
+    $resim = '';
+    if(isset($_FILES['resim']) && $_FILES['resim']['error'] === 0) {
+        $uploadDir = FCPATH . 'uploads/';
+        
+        // Uploads klasörü yoksa oluştur
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+        
+        $resim = uniqid() . '_' . basename($_FILES['resim']['name']);
+        $uploadFile = $uploadDir . $resim;
+        
+        if (move_uploaded_file($_FILES['resim']['tmp_name'], $uploadFile)) {
+            // Resim başarıyla yüklendi
+            $document = [
+                'baslik' => $baslik,
+                'icerik' => $icerik,
+                'resim' => $resim,
+                'tarih' => new MongoDB\BSON\UTCDateTime()
+            ];
+            
+            $result = $mongodb->insert('topics', $document);
+            
+            if($result->getInsertedCount() > 0) {
+                header('Location: ' . base_url('admin/panel'));
+                exit;
+            }
+        }
+    }
+}
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
