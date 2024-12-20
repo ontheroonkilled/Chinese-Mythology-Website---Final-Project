@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Admin Girişi</title>
+    <title>Admin Login</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <base href="<?= base_url() ?>">
@@ -15,7 +15,7 @@
 
     <!-- Header -->
     <header id="header">
-        <a href="<?= base_url() ?>" class="logo">Admin Giriş</a>
+        <a href="<?= base_url() ?>" class="logo">Admin Login</a>
     </header>
 
     <!-- Main -->
@@ -23,25 +23,30 @@
         <!-- Post -->
         <section class="post">
             <header class="major">
-                <h1>Admin Girişi</h1>
+                <h2>Admin Girişi</h2>
             </header>
+            <?php if(session()->getFlashdata('error')): ?>
+                <div class="alert alert-danger">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
+            <?php endif; ?>
             <!-- Login Form -->
             <form method="post" action="<?= base_url('admin/login') ?>">
-                <div class="fields">
-                    <div class="field">
+                <div class="row gtr-uniform">
+                    <div class="col-12">
                         <label for="kullanici_adi">Kullanıcı Adı</label>
-                        <input type="text" name="kullanici_adi" id="kullanici_adi" required />
-                        <span style="color:red;"></span>
+                        <input type="text" name="kullanici_adi" id="kullanici_adi" value="yonetici" required />
                     </div>
-                    <div class="field">
+                    <div class="col-12">
                         <label for="sifre">Şifre</label>
-                        <input type="password" name="sifre" id="sifre" required />
-                        <span style="color:red;"></span>
+                        <input type="password" name="sifre" id="sifre" value="123" required />
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><input type="submit" value="Giriş Yap" class="primary" /></li>
+                        </ul>
                     </div>
                 </div>
-                <ul class="actions">
-                    <li><input type="submit" value="Giriş Yap" class="primary" /></li>
-                </ul>
             </form>
         </section>
     </div>

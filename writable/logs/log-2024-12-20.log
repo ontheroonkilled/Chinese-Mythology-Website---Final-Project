@@ -75,51 +75,167 @@ in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
  5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
  6 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2024-12-20 14:53:14 --> Class "MongoDB\Driver\Manager" not found
-in APPPATH\Config\mongodb.php on line 10.
- 1 APPPATH\Config\mongodb.php(19): MongoDB_Connection->__construct()
- 2 APPPATH\Views\admin\adminpanel.php(4): MongoDB_Connection::getInstance()
- 3 SYSTEMPATH\View\View.php(226): include('C:\\wamp64\\www\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php')
- 4 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 5 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
- 6 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
- 7 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
- 8 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
- 9 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2024-12-20 14:53:22 --> Class "MongoDB\Driver\Manager" not found
-in APPPATH\Config\mongodb.php on line 10.
- 1 APPPATH\Config\mongodb.php(19): MongoDB_Connection->__construct()
- 2 APPPATH\Views\admin\adminpanel.php(4): MongoDB_Connection::getInstance()
- 3 SYSTEMPATH\View\View.php(226): include('C:\\wamp64\\www\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php')
- 4 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 5 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
- 6 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
- 7 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
- 8 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
- 9 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2024-12-20 15:21:00 --> Class "MongoDB\Driver\Manager" not found
-in APPPATH\Config\mongodb.php on line 10.
- 1 APPPATH\Config\mongodb.php(19): MongoDB_Connection->__construct()
- 2 APPPATH\Views\admin\adminpanel.php(4): MongoDB_Connection::getInstance()
- 3 SYSTEMPATH\View\View.php(226): include('C:\\wamp64\\www\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php')
- 4 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 5 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
- 6 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
- 7 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
- 8 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
- 9 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2024-12-20 15:57:38 --> Class "MongoDB\Driver\Manager" not found
-in APPPATH\Config\mongodb.php on line 10.
- 1 APPPATH\Config\mongodb.php(19): MongoDB_Connection->__construct()
- 2 APPPATH\Views\admin\adminpanel.php(4): MongoDB_Connection::getInstance()
- 3 SYSTEMPATH\View\View.php(226): include('C:\\wamp64\\www\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php')
- 4 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 5 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
- 6 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
- 7 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
- 8 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
- 9 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 18:07:17 --> App\Controllers\Pages::index(): Failed opening required 'C:\xampp\htdocs\Chinese-Mythology-Website---Final-Project\app\../config/mongodb.php' (include_path='\xampp\php\PEAR')
+in APPPATH\Controllers\pages.php on line 9.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2024-12-20 18:09:30 --> App\Controllers\Pages::index(): Failed opening required 'C:\xampp\htdocs\Chinese-Mythology-Website---Final-Project\app\Controllers/../../config/mongodb.php' (include_path='\xampp\php\PEAR')
+in APPPATH\Controllers\pages.php on line 9.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2024-12-20 18:10:32 --> Class 'App\Controllers\MongoDB_Connection' not found
+in APPPATH\Controllers\pages.php on line 10.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Pages->index()
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pages))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 18:11:16 --> Class 'Config\MongoDB\Driver\Manager' not found
+in APPPATH\Config\mongodb.php on line 12.
+ 1 APPPATH\Config\mongodb.php(21): Config\MongoDB_Connection->__construct()
+ 2 APPPATH\Controllers\pages.php(12): Config\MongoDB_Connection::getInstance()
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Pages->index()
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pages))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:00:05 --> Class 'MongoDB_Connection' not found
+in APPPATH\Views\admin\adminpanel.php on line 4.
+ 1 SYSTEMPATH\View\View.php(226): include()
+ 2 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
+ 4 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
+ 5 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
+ 6 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 7 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:00:11 --> Class 'MongoDB_Connection' not found
+in APPPATH\Views\admin\adminpanel.php on line 4.
+ 1 SYSTEMPATH\View\View.php(226): include()
+ 2 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
+ 4 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
+ 5 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
+ 6 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 7 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:01:44 --> Class 'MongoDB_Connection' not found
+in APPPATH\Views\admin\ekle.php on line 4.
+ 1 SYSTEMPATH\View\View.php(226): include()
+ 2 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/ekle', [], true)
+ 4 APPPATH\Controllers\Admin.php(23): view('admin/ekle')
+ 5 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->ekle()
+ 6 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 7 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:08:20 --> Undefined property: stdClass::$resim
+in APPPATH\Views\admin\adminpanel.php on line 49.
+ 1 APPPATH\Views\admin\adminpanel.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$resim', 'C:\\xampp\\htdocs\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php', 49, [...])
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
+ 5 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
+ 6 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
+ 7 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:09:16 --> Undefined property: stdClass::$resim
+in APPPATH\Views\admin\adminpanel.php on line 49.
+ 1 APPPATH\Views\admin\adminpanel.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$resim', 'C:\\xampp\\htdocs\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php', 49, [...])
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
+ 5 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
+ 6 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
+ 7 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:09:26 --> Undefined property: stdClass::$resim
+in APPPATH\Views\admin\adminpanel.php on line 49.
+ 1 APPPATH\Views\admin\adminpanel.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$resim', 'C:\\xampp\\htdocs\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php', 49, [...])
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Chinese-Mythology-Website---Final-Project\\app\\Views\\admin\\adminpanel.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/adminpanel', [], true)
+ 5 APPPATH\Controllers\Admin.php(14): view('admin/adminpanel')
+ 6 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->panel()
+ 7 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:12:04 --> Class 'App\Controllers\MongoDB_Connection' not found
+in APPPATH\Controllers\Admin.php on line 47.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->sil('6765c123231b000087000fbc')
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-20 19:13:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-12-20 19:13:52 --> Invalid file: "admin/duzenle.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/duzenle.php')
+ 2 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('admin/duzenle', [], true)
+ 3 APPPATH\Controllers\Admin.php(38): view('admin/duzenle')
+ 4 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->duzenle('676579c42a1100004e006e04')
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 6 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:17:11 --> Call to undefined method Config\MongoDB_Connection::unslugify()
+in APPPATH\Controllers\Admin.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->duzenle('what-is-lorem-ipsum')
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-12-20 19:17:28 --> Call to undefined method Config\MongoDB_Connection::unslugify()
+in APPPATH\Controllers\Admin.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\Admin->duzenle('deneme-bilmem-kac')
+ 2 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 3 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-12-20 19:18:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:18:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:21:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:23:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:24:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:26:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:26:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:26:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:26:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:26:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:41:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:41:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:41:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:41:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:41:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:41:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:42:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:44:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:44:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:44:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:53:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:53:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:53:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:55:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:56:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:56:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:57:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:57:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:57:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:57:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:58:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:58:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:58:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 19:58:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:38:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:38:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:38:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:38:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:38:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:38:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:38:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:50:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:50:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:50:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:50:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:50:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-20 20:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

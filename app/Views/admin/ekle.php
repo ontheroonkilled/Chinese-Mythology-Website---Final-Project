@@ -1,14 +1,15 @@
 <?php
-require_once __DIR__ . '/../../config/mongodb.php';
+require_once APPPATH . 'Config/mongodb.php';
 
-$mongodb = MongoDB_Connection::getInstance();
+$mongodb = \Config\MongoDB_Connection::getInstance();
 
 if(isset($_POST['ekle'])) {
     $baslik = $_POST['baslik'];
     $icerik = $_POST['icerik'];
+    $zaman = date('Y-m-d H:i:s');
     
     // Resim yükleme işlemi
-    $resim = '';
+    $resim = null;
     if(isset($_FILES['resim']) && $_FILES['resim']['error'] === 0) {
         $uploadDir = FCPATH . 'uploads/';
         
@@ -22,20 +23,29 @@ if(isset($_POST['ekle'])) {
         
         if (move_uploaded_file($_FILES['resim']['tmp_name'], $uploadFile)) {
             // Resim başarıyla yüklendi
-            $document = [
-                'baslik' => $baslik,
-                'icerik' => $icerik,
-                'resim' => $resim,
-                'tarih' => new MongoDB\BSON\UTCDateTime()
-            ];
-            
-            $result = $mongodb->insert('topics', $document);
-            
-            if($result->getInsertedCount() > 0) {
-                header('Location: ' . base_url('admin/panel'));
-                exit;
-            }
+        } else {
+            echo "Resim yüklenirken bir hata oluştu.";
+            $resim = null;
         }
+    }
+    
+    // Konuyu veritabanına ekle
+    $konu = [
+        'baslik' => $baslik,
+        'icerik' => $icerik,
+        'zaman' => $zaman
+    ];
+    
+    // Eğer resim yüklendiyse, resim adını da ekle
+    if ($resim !== null) {
+        $konu['resim'] = $resim;
+    }
+    
+    if ($mongodb->insert('topics', $konu)) {
+        header('Location: ' . base_url('admin/panel'));
+        exit;
+    } else {
+        echo "Konu eklenirken bir hata oluştu.";
     }
 }
 ?>

@@ -3,9 +3,9 @@
             <section>
                 <h3>Social</h3>
                 <ul class="icons alt">
-                    <li><a href="https://github.com/ontheroonkilled" class="icon brands fa-github"><span class="label">Berat Beşgül</span></a></li>
-                    <li><a href="https://github.com/shest00" class="icon brands fa-github"><span class="label">Emircan Doğanay</span></a></li>
-                    <li><a href="https://github.com/emircopur" class="icon brands fa-github"><span class="label">Emir Çöpür</span></a></li>
+                    <li><a href="https://steamcommunity.com/profiles/76561198312714440" class="icon brands alt fa-steam"><span class="label">Steam</span></a></li>
+                    <li><a href="https://www.odyofilizm.com" class="icon brands alt fa-wordpress"><span class="label">WordPress</span></a></li>
+                    <li><a href="https://www.instagram.com/shuichi_tatsuo/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
                 </ul>
             </section>
         </section>

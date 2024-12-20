@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../../config/mongodb.php';
+require_once APPPATH . 'Config/mongodb.php';
 
-$mongodb = MongoDB_Connection::getInstance();
+$mongodb = \Config\MongoDB_Connection::getInstance();
 $topics = $mongodb->find('topics');
 ?>
 <!DOCTYPE HTML>
@@ -41,17 +41,26 @@ $topics = $mongodb->find('topics');
                 </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($topics as $topic): ?>
-                    <tr>
-                        <td><?= $topic->_id ?></td>
-                        <td><?= $topic->baslik ?></td>
-                        <td><?= substr($topic->icerik, 0, 100) ?>...</td>
-                        <td><img src="<?= base_url('uploads/' . $topic->resim) ?>" width="100" alt=""></td>
-                        <td>
-                            <a href="<?= base_url('admin/duzenle/'.$topic->_id) ?>" class="button small">Düzenle</a>
-                            <a href="<?= base_url('admin/sil/'.$topic->_id) ?>" class="button small" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
-                        </td>
-                    </tr>
+                    <?php foreach ($topics as $topic): 
+                        $resimYolu = property_exists($topic, 'resim') && $topic->resim ? base_url('uploads/' . $topic->resim) : base_url('assets/images/default.jpg');
+                        $baslik_url = $mongodb->createSlug($topic->baslik);
+                    ?>
+                        <tr>
+                            <td><?= $topic->_id ?></td>
+                            <td><?= $topic->baslik ?></td>
+                            <td><?= substr($topic->icerik, 0, 100) ?>...</td>
+                            <td>
+                                <?php if(property_exists($topic, 'resim') && $topic->resim): ?>
+                                    <img src="<?= $resimYolu ?>" alt="<?= $topic->baslik ?>" style="max-width: 100px;">
+                                <?php else: ?>
+                                    <span>Resim yok</span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <a href="<?= base_url('admin/duzenle/'.$topic->_id) ?>" class="button small">Düzenle</a>
+                                <a href="<?= base_url('admin/sil/'.$topic->_id) ?>" class="button small" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
