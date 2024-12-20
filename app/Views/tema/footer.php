@@ -3,16 +3,16 @@
             <section>
                 <h3>Social</h3>
                 <ul class="icons alt">
-                    <li><a href="https://steamcommunity.com/profiles/76561198312714440" class="icon brands alt fa-steam"><span class="label">Steam</span></a></li>
-                    <li><a href="https://www.odyofilizm.com" class="icon brands alt fa-wordpress"><span class="label">WordPress</span></a></li>
-                    <li><a href="https://www.instagram.com/shuichi_tatsuo/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="https://github.com/ontheroonkilled" class="icon brands fa-github"><span class="label">Berat Beşgül Github</span></a></li>
+                    <li><a href="https://github.com/shest00" class="icon brands fa-github"><span class="label">Emircan Doğanay Github</span></a></li>
+                    <li><a href="https://github.com/emircopur" class="icon brands fa-github"><span class="label">Emir Çöpür Github</span></a></li>
                 </ul>
             </section>
         </section>
     </footer>
 
     <div id="copyright">
-        <ul><li>Odyofilizm &copy; <?= date('Y') ?></li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+        <ul><li>Çin Mitolojisi &copy; <?= date('Y') ?></li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
     </div>
 
 </div>
