@@ -3,6 +3,10 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
+use MongoDB\Driver\Manager;
+use MongoDB\Driver\Query;
+use MongoDB\Driver\BulkWrite;
+use MongoDB\Driver\Exception\Exception as MongoDBException;
 use Config\MongoDB_Connection;
 
 class Admin extends Controller {
@@ -12,27 +16,88 @@ class Admin extends Controller {
         $this->session = \Config\Services::session();
     }
 
-    public function login() {
+    public function createadmin() {
         if ($this->request->getMethod() === 'post') {
-            $username = $this->request->getPost('kullanici_adi');
-            $password = $this->request->getPost('sifre');
+            $username = "yonetici";
+            $password = password_hash("123", PASSWORD_DEFAULT);
+            
+            try {
+                $mongodb = \Config\MongoDB_Connection::getInstance();
+                $bulk = new \MongoDB\Driver\BulkWrite;
+                
+                // Yeni admin kullanıcısı dokümanı
+                $document = [
+                    'username' => $username,
+                    'password' => $password,
+                    'created_at' => new \MongoDB\BSON\UTCDateTime(time() * 1000)
+                ];
+                
+                // Önce eski admin kullanıcısını sil
+                $bulk->delete(['username' => $username]);
+                
+                // Yeni admin kullanıcısını ekle
+                $bulk->insert($document);
+                
+                $writeConcern = new \MongoDB\Driver\WriteConcern(\MongoDB\Driver\WriteConcern::MAJORITY, 1000);
+                $result = $mongodb->getClient()->executeBulkWrite('chinaMythology.users', $bulk, $writeConcern);
+                
+                if ($result->getInsertedCount() > 0) {
+                    return view('admin/createadmin', ['message' => 'Admin kullanıcısı başarıyla oluşturuldu.']);
+                }
+            } catch (\MongoDB\Driver\Exception\Exception $e) {
+                return view('admin/createadmin', ['error' => 'Hata: ' . $e->getMessage()]);
+            }
+        }
+        
+        return view('admin/createadmin');
+    }
 
-            // Basit kontrol
-            if ($username === 'yonetici' && $password === '123') {
-                $this->session->set([
-                    'isLoggedIn' => true,
-                    'username' => $username
-                ]);
-                return redirect()->to(base_url('admin/panel'));
+    public function login()
+    {
+        helper('mongodb');
+        $message = "";
+
+        if ($this->request->getMethod() === 'post') {
+            $kullaniciAdi = $this->request->getPost('kullanici_adi');
+            $sifre = $this->request->getPost('sifre');
+
+            if (!empty($kullaniciAdi) && !empty($sifre)) {
+                try {
+                    $mongodb = get_mongodb_instance();
+                    
+                    // Kullanıcıyı bul
+                    $filter = ['username' => $kullaniciAdi];
+                    $query = new \MongoDB\Driver\Query($filter);
+                    $cursor = $mongodb->executeQuery(get_mongodb_database() . '.users', $query);
+                    $users = $cursor->toArray();
+
+                    if (count($users) === 1) {
+                        $user = $users[0];
+                        if (password_verify($sifre, $user->password)) {
+                            $this->session->set([
+                                'isLoggedIn' => true,
+                                'username' => $user->username
+                            ]);
+                            session()->setFlashdata('success', 'Hoş geldiniz, ' . htmlspecialchars($user->username));
+                            return redirect()->to(base_url('/admin/panel'));
+                        } else {
+                            session()->setFlashdata('error', 'Hatalı şifre!');
+                        }
+                    } else {
+                        session()->setFlashdata('error', 'Kullanıcı bulunamadı!');
+                    }
+                } catch (\MongoDB\Driver\Exception\Exception $e) {
+                    session()->setFlashdata('error', 'Veritabanı hatası: ' . $e->getMessage());
+                }
             } else {
-                return redirect()->to(base_url('admin/login'))->with('error', 'Kullanıcı adı veya şifre hatalı.');
+                session()->setFlashdata('error', 'Lütfen kullanıcı adı ve şifre girin.');
             }
         }
 
-        return view('admin/login');
+        return view('admin/login', ['message' => $message]);
     }
 
-    private function checkLogin() {
+    public function checkLogin() {
         if (!$this->session->get('isLoggedIn')) {
             return redirect()->to(base_url('admin/login'));
         }

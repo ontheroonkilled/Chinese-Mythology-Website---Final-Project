@@ -30,16 +30,21 @@
                     <?= session()->getFlashdata('error') ?>
                 </div>
             <?php endif; ?>
+            <?php if(session()->getFlashdata('success')): ?>
+                <div class="alert alert-success">
+                    <?= session()->getFlashdata('success') ?>
+                </div>
+            <?php endif; ?>
             <!-- Login Form -->
             <form method="post" action="<?= base_url('admin/login') ?>">
                 <div class="row gtr-uniform">
                     <div class="col-12">
                         <label for="kullanici_adi">Kullanıcı Adı</label>
-                        <input type="text" name="kullanici_adi" id="kullanici_adi" value="yonetici" required />
+                        <input type="text" name="kullanici_adi" id="kullanici_adi" required />
                     </div>
                     <div class="col-12">
                         <label for="sifre">Şifre</label>
-                        <input type="password" name="sifre" id="sifre" value="123" required />
+                        <input type="password" name="sifre" id="sifre" required />
                     </div>
                     <div class="col-12">
                         <ul class="actions">

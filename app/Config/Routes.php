@@ -18,6 +18,8 @@ $routes->get('hakkimizda', 'Pages::hakkimizda');
 $routes->get('mongo/(:num)', 'Home::test/$1');
 
 // Admin routes
+$routes->get('admin/createadmin', 'Admin::createadmin');
+$routes->post('admin/createadmin', 'Admin::createadmin');
 $routes->get('admin/login', 'Admin::login');
 $routes->post('admin/login', 'Admin::login');
 $routes->get('admin', 'Admin::panel');
