@@ -12,7 +12,7 @@
     </footer>
 
     <div id="copyright">
-        <ul><li>Çin Mitolojisi &copy; <?= date('Y') ?></li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+        <ul><li>Çin Mitolojisi &copy; <?= date('Y') ?></li><li>Design: <a href="https://github.com/ontheroonkilled">Berat Beşgül</a></li></ul>
     </div>
 
 </div>
