@@ -110,37 +110,100 @@ class Admin extends Controller {
 
     public function ekle() {
         $this->checkLogin();
+        
         if ($this->request->getMethod() === 'post') {
-            // POST isteği - form gönderilmiş
-            return view('admin/ekle');
-        } else {
-            // GET isteği - formu göster
-            return view('admin/ekle');
+            $baslik = $this->request->getPost('baslik');
+            $icerik = $this->request->getPost('icerik');
+            
+            if (empty($baslik) || empty($icerik)) {
+                return redirect()->to(base_url('admin/ekle'))
+                    ->with('error', 'Başlık ve içerik alanları zorunludur.');
+            }
+            
+            require_once APPPATH . 'Config/mongodb.php';
+            $mongodb = MongoDB_Connection::getInstance();
+            
+            $data = [
+                'baslik' => $baslik,
+                'icerik' => $icerik,
+                'zaman' => date('Y-m-d H:i:s')
+            ];
+            
+            // Resim yükleme işlemi
+            $resim = $this->request->getFile('resim');
+            if ($resim && $resim->isValid() && !$resim->hasMoved()) {
+                $newName = $resim->getRandomName();
+                $resim->move(FCPATH . 'uploads', $newName);
+                $data['resim'] = $newName;
+            }
+            
+            try {
+                $bulk = new \MongoDB\Driver\BulkWrite;
+                $bulk->insert($data);
+                
+                $writeConcern = new \MongoDB\Driver\WriteConcern(\MongoDB\Driver\WriteConcern::MAJORITY, 1000);
+                $result = $mongodb->getClient()->executeBulkWrite('chinaMythology.topics', $bulk, $writeConcern);
+                
+                if ($result->getInsertedCount() > 0) {
+                    return redirect()->to(base_url('admin/panel'))
+                        ->with('success', 'Konu başarıyla eklendi.');
+                }
+            } catch (\Exception $e) {
+                return redirect()->to(base_url('admin/ekle'))
+                    ->with('error', 'Konu eklenirken bir hata oluştu: ' . $e->getMessage());
+            }
         }
+        
+        return view('admin/ekle');
     }
 
-    public function duzenle($id = null) {
+    public function duzenle($slug = null) {
         $this->checkLogin();
-        if (!$id) {
+        if (!$slug) {
             return redirect()->to(base_url('admin/panel'));
         }
 
         require_once APPPATH . 'Config/mongodb.php';
         $mongodb = MongoDB_Connection::getInstance();
 
-        // ID'ye göre konuyu bul
+        // Slug'a göre konuyu bul
         try {
-            $topic = $mongodb->findOne('topics', ['_id' => new \MongoDB\BSON\ObjectId($id)]);
+            $filter = ['$or' => [
+                ['_id' => ['$exists' => true]],  // Tüm dökümanlar
+                ['baslik' => ['$exists' => true]]  // Başlığı olan tüm dökümanlar
+            ]];
+            $query = new \MongoDB\Driver\Query($filter);
+            $cursor = $mongodb->getClient()->executeQuery('chinaMythology.topics', $query);
+            $topics = $cursor->toArray();
+            
+            // Önce ID ile eşleşme kontrolü
+            $topic = null;
+            try {
+                $objectId = new \MongoDB\BSON\ObjectId($slug);
+                foreach ($topics as $t) {
+                    if ($t->_id == $objectId) {
+                        $topic = $t;
+                        break;
+                    }
+                }
+            } catch (\Exception $e) {
+                // Eğer slug geçerli bir ObjectId değilse, başlık ile arama yap
+                foreach ($topics as $t) {
+                    if ($mongodb->createSlug($t->baslik) === $slug) {
+                        $topic = $t;
+                        break;
+                    }
+                }
+            }
             
             if (!$topic) {
                 return redirect()->to(base_url('admin/panel'))->with('error', 'Konu bulunamadı.');
             }
         } catch (\Exception $e) {
-            return redirect()->to(base_url('admin/panel'))->with('error', 'Geçersiz ID.');
+            return redirect()->to(base_url('admin/panel'))->with('error', 'Geçersiz ID veya slug.');
         }
 
         if ($this->request->getMethod() === 'post') {
-            // POST isteği - form gönderilmiş
             $baslik = $this->request->getPost('baslik');
             $icerik = $this->request->getPost('icerik');
             
@@ -159,19 +222,27 @@ class Admin extends Controller {
             }
             
             try {
-                $filter = ['_id' => $topic->_id];
-                if ($mongodb->update('topics', $filter, $updateData)) {
+                $bulk = new \MongoDB\Driver\BulkWrite;
+                $bulk->update(
+                    ['_id' => $topic->_id],
+                    ['$set' => $updateData]
+                );
+                
+                $writeConcern = new \MongoDB\Driver\WriteConcern(\MongoDB\Driver\WriteConcern::MAJORITY, 1000);
+                $result = $mongodb->getClient()->executeBulkWrite('chinaMythology.topics', $bulk, $writeConcern);
+                
+                if ($result->getModifiedCount() > 0) {
                     return redirect()->to(base_url('admin/panel'))->with('success', 'Konu başarıyla güncellendi.');
-                } else {
-                    return redirect()->to(base_url('admin/panel'))->with('error', 'Konu güncellenirken bir hata oluştu.');
                 }
+                
+                return redirect()->to(current_url())->with('error', 'Konu güncellenirken bir hata oluştu.');
             } catch (\Exception $e) {
-                return redirect()->to(base_url('admin/panel'))->with('error', 'Konu güncellenirken bir hata oluştu: ' . $e->getMessage());
+                return redirect()->to(current_url())->with('error', 'Konu güncellenirken bir hata oluştu: ' . $e->getMessage());
             }
-        } else {
-            // GET isteği - formu göster
-            return view('admin/duzenle', ['topic_id' => $id]);
         }
+        
+        // GET isteği - formu göster
+        return view('admin/duzenle', ['topic' => $topic]);  // topic_id yerine direkt topic nesnesini gönder
     }
 
     public function sil($id = null) {
@@ -196,6 +267,44 @@ class Admin extends Controller {
             return redirect()->to(base_url('admin/panel'))->with('error', 'Konu silinirken bir hata oluştu: ' . $e->getMessage());
         }
     }
+
+    public function duzenleHakkimizda($id = null)
+{
+    $this->checkLogin();
+    
+    // HakkimizdaModel'i yükle
+    $model = new \App\Models\HakkimizdaModel();
+    
+    if ($this->request->getMethod() === 'post') {
+        $data = [
+            'baslik' => $this->request->getPost('baslik'),
+            'icerik' => $this->request->getPost('icerik')
+        ];
+
+        // Resim yükleme işlemi
+        $resim = $this->request->getFile('resim');
+        if ($resim && $resim->isValid() && !$resim->hasMoved()) {
+            $newName = $resim->getRandomName();
+            $resim->move(FCPATH . 'uploads', $newName);
+            $data['resim'] = $newName;
+        }
+
+        if ($model->update($id, $data)) {
+            return redirect()->to(base_url('admin/panel'))->with('success', 'Hakkımızda sayfası başarıyla güncellendi.');
+        } else {
+            return redirect()->to(base_url('admin/duzenleHakkimizda/' . $id))->with('error', 'Güncelleme sırasında bir hata oluştu.');
+        }
+    }
+
+    // Mevcut veriyi getir
+    $data['hakkimizda'] = $model->find($id);
+    
+    if (empty($data['hakkimizda'])) {
+        return redirect()->to(base_url('admin/panel'))->with('error', 'Hakkımızda verisi bulunamadı.');
+    }
+
+    return view('admin/duzenleHakkimizda', $data);
+}
 
     public function logout() {
         $this->session->remove(['isLoggedIn', 'username']);

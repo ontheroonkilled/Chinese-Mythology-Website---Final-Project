@@ -14,7 +14,7 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'Pages::index');
 $routes->get('detay/(:segment)', 'Pages::detay/$1');
-$routes->get('hakkimizda', 'Pages::hakkimizda');
+$routes->get('hakkimizda', 'Hakkimizda::index');
 $routes->get('mongo/(:num)', 'Home::test/$1');
 
 // Admin routes
@@ -28,4 +28,6 @@ $routes->get('admin/ekle', 'Admin::ekle');
 $routes->post('admin/ekle', 'Admin::ekle');
 $routes->get('admin/duzenle/(:segment)', 'Admin::duzenle/$1');
 $routes->post('admin/duzenle/(:segment)', 'Admin::duzenle/$1');
+$routes->get('admin/duzenleHakkimizda/(:num)', 'Admin::duzenleHakkimizda/$1');
+$routes->post('admin/duzenleHakkimizda/(:num)', 'Admin::duzenleHakkimizda/$1');
 $routes->get('admin/sil/(:segment)', 'Admin::sil/$1');

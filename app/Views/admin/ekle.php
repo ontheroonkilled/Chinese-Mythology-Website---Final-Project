@@ -1,6 +1,5 @@
 <?php
 require_once APPPATH . 'Config/mongodb.php';
-
 $mongodb = \Config\MongoDB_Connection::getInstance();
 
 if(isset($_POST['ekle'])) {
@@ -58,6 +57,9 @@ if(isset($_POST['ekle'])) {
     <base href="<?= base_url() ?>">
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    
+    <!-- Summernote CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <body class="is-preload">
 <div id="wrapper">
@@ -68,6 +70,7 @@ if(isset($_POST['ekle'])) {
         <ul class="links">
             <li><a href="<?= base_url('admin/panel') ?>">Konular</a></li>
             <li><a href="<?= base_url('admin/ekle') ?>">Konu Ekle</a></li>
+            <li><a href="<?= base_url('admin/duzenleHakkimizda/1') ?>">Hakkımızda</a></li>
         </ul>
     </nav>
     <div id="main">
@@ -75,7 +78,7 @@ if(isset($_POST['ekle'])) {
             <header class="major">
                 <h1>Konu Ekleme</h1>
             </header>
-            <form method="post" action="<?= base_url('admin/ekle') ?>" enctype="multipart/form-data">
+            <form method="post" action="<?= current_url() ?>" enctype="multipart/form-data">
                 <div class="fields">
                     <div class="field">
                         <label for="baslik">Başlık</label>
@@ -100,7 +103,7 @@ if(isset($_POST['ekle'])) {
         <ul><li>Çin Mitolojisi &copy; 2024</li><li>Design: <a>Berat Beşgül</a></li></ul>
     </div>
 </div>
-<!-- Scripts -->
+
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.scrollex.min.js"></script>
 <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -108,5 +111,24 @@ if(isset($_POST['ekle'])) {
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Summernote JS -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#icerik').summernote({
+            placeholder: 'İçerik yazın...',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline']],
+                ['font', ['strikethrough']],
+                ['para', ['ul', 'ol']],
+                ['insert', ['link']]
+            ],
+            lang: 'tr-TR'
+        });
+    });
+</script>
 </body>
 </html>

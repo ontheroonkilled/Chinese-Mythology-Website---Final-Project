@@ -43,35 +43,14 @@ class MongoDB_Connection {
         }
     }
 
-    public function createSlug($str) {
-        $str = mb_strtolower($str, 'UTF-8');
-        $str = str_replace(
-            ['ı', 'ğ', 'ü', 'ş', 'ö', 'ç', ' '],
-            ['i', 'g', 'u', 's', 'o', 'c', '-'],
-            $str
-        );
-        $str = preg_replace('/[^a-z0-9\-]/', '', $str);
-        $str = preg_replace('/-+/', '-', $str);
-        return trim($str, '-');
-    }
-
-    public function unslugify($slug) {
-        // Tireleri boşluk ile değiştir
-        $str = str_replace('-', ' ', $slug);
-        
-        // Her kelimenin ilk harfini büyük yap
-        $str = ucwords($str);
-        
-        return $str;
-    }
-
     public function insert($collection, $document) {
         try {
             $bulk = new BulkWrite();
             $bulk->insert($document);
             
             $writeConcern = new WriteConcern(WriteConcern::MAJORITY, 1000);
-            return $this->client->executeBulkWrite($this->db . "." . $collection, $bulk, $writeConcern);
+            $result = $this->client->executeBulkWrite($this->db . "." . $collection, $bulk, $writeConcern);
+            return $result->getInsertedCount() > 0;
         } catch (MongoDBException $e) {
             die("Ekleme Hatası: " . $e->getMessage());
         }
@@ -122,13 +101,34 @@ class MongoDB_Connection {
 
     public function delete($collection, $filter) {
         try {
-            $bulk = new BulkWrite();
+            $bulk = new \MongoDB\Driver\BulkWrite;
             $bulk->delete($filter);
-            
-            $writeConcern = new WriteConcern(WriteConcern::MAJORITY, 1000);
-            return $this->client->executeBulkWrite($this->db . "." . $collection, $bulk, $writeConcern);
-        } catch (MongoDBException $e) {
-            die("Silme Hatası: " . $e->getMessage());
+            $result = $this->client->executeBulkWrite($this->db . '.' . $collection, $bulk);
+            return $result->getDeletedCount() > 0;
+        } catch (\Exception $e) {
+            return false;
         }
+    }
+
+    public function getClient() {
+        return $this->client;
+    }
+
+    public function createSlug($str, $delimiter = '-') {
+        // Özel karakterleri değiştir
+        $str = str_replace(['ı', 'ğ', 'ü', 'ş', 'ö', 'ç', 'İ', 'Ğ', 'Ü', 'Ş', 'Ö', 'Ç'], 
+                          ['i', 'g', 'u', 's', 'o', 'c', 'i', 'g', 'u', 's', 'o', 'c'], $str);
+        
+        // Çince karakterleri kaldır ve sadece Latin karakterleri ve sayıları tut
+        $str = preg_replace('/[^\p{Latin}\d\s-]/u', '', $str);
+        
+        // Boşlukları tire ile değiştir
+        $str = preg_replace('/[\s-]+/', $delimiter, $str);
+        
+        // Başındaki ve sonundaki tireleri kaldır
+        $str = trim($str, $delimiter);
+        
+        // Küçük harfe çevir
+        return strtolower($str);
     }
 }

@@ -21,8 +21,9 @@ $topics = $mongodb->find('topics');
     </header>
     <nav id="nav">
         <ul class="links">
-            <li><a href="<?= base_url('admin/panel') ?>">Konular</a></li>
+        <li><a href="<?= base_url('admin/panel') ?>">Konular</a></li>
             <li><a href="<?= base_url('admin/ekle') ?>">Konu Ekle</a></li>
+            <li><a href="<?= base_url('admin/duzenleHakkimizda/1') ?>">Hakkımızda</a></li>
         </ul>
     </nav>
     <div id="main">
@@ -57,8 +58,8 @@ $topics = $mongodb->find('topics');
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <a href="<?= base_url('admin/duzenle/'.$topic->_id) ?>" class="button small">Düzenle</a>
-                                <a href="<?= base_url('admin/sil/'.$topic->_id) ?>" class="button small" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+                                <a href="<?= base_url('admin/duzenle/'.$baslik_url) ?>" class="button small">Düzenle</a>
+                                <a href="<?= base_url('admin/sil/'.$topic->_id) ?>" class="button small" onclick="return confirm('Bu konuyu silmek istediğinizden emin misiniz?')">Sil</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

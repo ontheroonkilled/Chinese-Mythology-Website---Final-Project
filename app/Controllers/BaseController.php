@@ -35,7 +35,12 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = [
+        'url',    // url_title ve base_url için
+        'text',   // word_limiter için
+        'html',   // anchor için
+        'inflector' // pascalize için
+    ];
 
     /**
      * Be sure to declare properties for any property fetch you initialized.

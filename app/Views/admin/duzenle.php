@@ -1,12 +1,4 @@
 <?php
-require_once APPPATH . 'Config/mongodb.php';
-$mongodb = \Config\MongoDB_Connection::getInstance();
-
-// ID'ye göre konuyu getir
-if (isset($topic_id)) {
-    $topic = $mongodb->findOne('topics', ['_id' => new \MongoDB\BSON\ObjectId($topic_id)]);
-}
-
 if (!isset($topic)) {
     echo "Konu bulunamadı.";
     return;
@@ -71,6 +63,17 @@ $resimYolu = property_exists($topic, 'resim') && $topic->resim ? base_url('uploa
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#icerik'), {
+            toolbar: ['heading', '|', 'bold', 'italic', '|', 'bulletedList', 'numberedList', '|', 'undo', 'redo'],
+            language: 'tr'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 </body>
 </html>
