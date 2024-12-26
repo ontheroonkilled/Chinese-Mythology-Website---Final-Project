@@ -100,7 +100,7 @@ if(isset($_POST['ekle'])) {
         </section>
     </div>
     <div id="copyright">
-        <ul><li>Çin Mitolojisi &copy; 2024</li><li>Design: <a>Berat Beşgül</a></li></ul>
+        <ul><li>Çin Mitolojisi &copy; <?= date('Y') ?></li><li>Design: <a href="https://github.com/ontheroonkilled">Berat Beşgül</a></li></ul>
     </div>
 </div>
 

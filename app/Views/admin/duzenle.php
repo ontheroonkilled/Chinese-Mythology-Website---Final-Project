@@ -55,7 +55,9 @@ $resimYolu = property_exists($topic, 'resim') && $topic->resim ? base_url('uploa
         </section>
     </div>
 </div>
-
+<div id="copyright">
+        <ul><li>Çin Mitolojisi &copy; <?= date('Y') ?></li><li>Design: <a href="https://github.com/ontheroonkilled">Berat Beşgül</a></li></ul>
+    </div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.scrollex.min.js"></script>
 <script src="assets/js/jquery.scrolly.min.js"></script>

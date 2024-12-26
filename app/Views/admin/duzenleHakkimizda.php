@@ -61,8 +61,7 @@
         </div>
 
         <div id="copyright">
-            <ul><li>Çin Mitolojisi &copy; 2024</li></ul>
-        </div>
+        <ul><li>Çin Mitolojisi &copy; <?= date('Y') ?></li><li>Design: <a href="https://github.com/ontheroonkilled">Berat Beşgül</a></li></ul>
     </div>
 
     <script src="assets/js/jquery.min.js"></script>
