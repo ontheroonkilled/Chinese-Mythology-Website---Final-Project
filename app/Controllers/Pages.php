@@ -64,6 +64,7 @@ class Pages extends BaseController
 
     public function detay($baslik_url)
     {
+        helper(['url']); // Sadece anchor için gerekli
         require_once APPPATH . 'Config/mongodb.php';
         $mongodb = MongoDB_Connection::getInstance();
         
@@ -85,6 +86,10 @@ class Pages extends BaseController
         
         $data['topic'] = $topic;
         $data['active_menu'] = 'home';
+        
+        // İlgili konuya link oluştur
+        $data['topic']->link = anchor('detay/' . $mongodb->createSlug($topic->baslik), 'Detaya Git', ['class' => 'button']);
+        
         return view('tema/header', $data)
              . view('sayfalar/detay', $data)
              . view('tema/footer');

@@ -110,6 +110,7 @@ class Admin extends Controller {
 
     public function ekle() {
         $this->checkLogin();
+        helper(['url', 'text', 'inflector']);
         
         if ($this->request->getMethod() === 'post') {
             $baslik = $this->request->getPost('baslik');
@@ -123,8 +124,16 @@ class Admin extends Controller {
             require_once APPPATH . 'Config/mongodb.php';
             $mongodb = MongoDB_Connection::getInstance();
             
+            // Başlık formatları
+            $baslik_seo = $mongodb->createSlug($baslik); // URL için ana format
+            $baslik_alt = url_title($baslik, '-', true); // Alternatif URL format
+            $baslik_sistem = pascalize($baslik); // Sistem içi kullanım
+            
             $data = [
                 'baslik' => $baslik,
+                'baslik_seo' => $baslik_seo, // createSlug ile oluşan asıl URL
+                'baslik_alt' => $baslik_alt, // Yedek URL format
+                'baslik_sistem' => $baslik_sistem, // Sistem içi kullanım
                 'icerik' => $icerik,
                 'zaman' => date('Y-m-d H:i:s')
             ];
@@ -145,8 +154,14 @@ class Admin extends Controller {
                 $result = $mongodb->getClient()->executeBulkWrite('chinaMythology.topics', $bulk, $writeConcern);
                 
                 if ($result->getInsertedCount() > 0) {
+                    // Başarılı mesajı ve görüntüleme linki
+                    $success_message = 'Konu başarıyla eklendi. ' . 
+                                     anchor('detay/' . $baslik_seo, 'Konuyu görüntüle', ['class' => 'alert-link']) . 
+                                     ' | ' . 
+                                     anchor('admin/duzenle/' . $baslik_seo, 'Düzenle', ['class' => 'alert-link']);
+                    
                     return redirect()->to(base_url('admin/panel'))
-                        ->with('success', 'Konu başarıyla eklendi.');
+                        ->with('success', $success_message);
                 }
             } catch (\Exception $e) {
                 return redirect()->to(base_url('admin/ekle'))
